@@ -1,0 +1,39 @@
+<ng-container *ngIf="record; else noRecord">
+  <form class="record-form" (ngSubmit)="save.emit(record)" (ngModelChange)="formChanged()">
+    <div class="record-title-edit-row">
+      <div *ngIf="mode === 'view'" class="record-details-title record-title-view" (click)="mode = 'edit'">
+        {{ record[getTitleKey()] || 'Record Details' }}
+      </div>
+      <div *ngIf="mode !== 'view'" class="record-details-title record-title-edit">
+        <input matInput [(ngModel)]="record[getTitleKey()]" [name]="getTitleKey()" (ngModelChange)="formChanged()"
+          class="record-title-input" autocomplete="off" />
+        <div class="record-title-underline"></div>
+      </div>
+    </div>
+    <ng-container *ngFor="let key of getRecordKeys(record)">
+      <ng-container *ngIf="key !== 'id' && key !== getTitleKey()">
+        <div class="record-form-row">
+          <mat-form-field appearance="outline" class="compact-form-field mat-mdc-form-field" *ngIf="!isMultiline(record[key]) && !isBoolean(record[key])">
+            <mat-label>{{ key | titlecase }}</mat-label>
+            <input matInput [(ngModel)]="record[key]" [name]="key" (ngModelChange)="formChanged()" [disabled]="mode === 'view'" />
+          </mat-form-field>
+          <mat-form-field appearance="outline" class="compact-form-field mat-mdc-form-field" *ngIf="isMultiline(record[key])">
+            <mat-label>{{ key | titlecase }}</mat-label>
+            <textarea matInput [(ngModel)]="record[key]" [name]="key" (ngModelChange)="formChanged()" [disabled]="mode === 'view'"></textarea>
+          </mat-form-field>
+          <mat-checkbox *ngIf="isBoolean(record[key])" [(ngModel)]="record[key]" [name]="key" (ngModelChange)="formChanged()" [disabled]="mode === 'view'">{{ key | titlecase }}</mat-checkbox>
+        </div>
+      </ng-container>
+    </ng-container>
+    <div class="form-actions" *ngIf="mode !== 'view'">
+      <button mat-button color="primary" type="submit">Save</button>
+      <button mat-button type="button" (click)="cancel.emit()">Cancel</button>
+    </div>
+  </form>
+</ng-container>
+<ng-template #noRecord>
+  <div style="padding: 32px; color: #888; text-align: center; font-size: 1.1rem;">
+    Select a record to view details.<br />
+    Or create a new record to get started.
+  </div>
+</ng-template>

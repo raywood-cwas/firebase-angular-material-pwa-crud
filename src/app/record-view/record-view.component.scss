@@ -1,0 +1,76 @@
+mat-card {
+  margin: 16px 0;
+}
+mat-card-content {
+  font-family: monospace;
+  white-space: pre-wrap;
+}
+mat-card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.record-details-title {
+  font-size: 2.1rem;
+  font-weight: 800;
+  color: #222;
+  letter-spacing: -0.01em;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-family: 'Google Sans', 'Inter', Arial, sans-serif;
+  text-align: center;
+  width: 100%;
+  margin: 36px 0 12px 0;
+  cursor: pointer;
+}
+
+.record-form, .record-view-fields {
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.record-title-edit-row {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.record-title-edit {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.record-title-input {
+  font-size: 2.1rem;
+  font-weight: 800;
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: center;
+  width: 100%;
+  margin-bottom: 0;
+  padding: 0;
+  box-shadow: none;
+}
+
+.record-title-input:focus {
+  outline: none;
+}
+
+.record-title-underline {
+  width: 100%;
+  height: 2px;
+  background: #1976d2;
+  margin-top: 2px;
+  border-radius: 1px;
+  transition: background 0.2s;
+}
+
+.record-title-view {
+  cursor: pointer;
+}
