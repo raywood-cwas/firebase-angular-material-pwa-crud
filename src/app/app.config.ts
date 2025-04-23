@@ -5,21 +5,13 @@ import { provideServiceWorker } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { provideFirebaseApp, initializeApp } from '@angular/fire/app';
 import { provideDatabase, getDatabase } from '@angular/fire/database';
+import { firebaseConfig } from '../environments/firebase.config';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter([]), // Add your routes here
     provideAnimations(),
-    provideFirebaseApp(() => initializeApp({
-      apiKey: "AIzaSyCX02FmDR7xueZ4J482hVWTSBV9JyB2SR0",
-      authDomain: "test-bookings-project.firebaseapp.com",
-      databaseURL: "https://test-bookings-project-default-rtdb.firebaseio.com",
-      projectId: "test-bookings-project",
-      storageBucket: "test-bookings-project.firebasestorage.app",
-      messagingSenderId: "1071663614831",
-      appId: "1:1071663614831:web:ff1ef62be4740fd778f69a",
-      measurementId: "G-KQRKRS62L2"
-    })),
+    provideFirebaseApp(() => initializeApp(firebaseConfig)),
     provideDatabase(() => getDatabase()),
     provideServiceWorker('ngsw-worker.js', {
       enabled: environment.production,
